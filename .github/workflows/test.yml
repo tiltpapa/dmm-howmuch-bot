@@ -22,7 +22,11 @@ jobs:
             
             - name: Run Deno
               id: run
-              run: echo "content=$(deno --quiet task bot)" >> $GITHUB_ENV
+            # run: echo "content=$(deno --quiet task bot)" >> $GITHUB_ENV
+              run: | 
+                echo "content<<EOS" >> $GITHUB_ENV
+                deno --quiet task bot >> $GITHUB_ENV
+                echo "EOS" >> $GITHUB_ENV
     
     publish: #試験段階のため投稿はしない
         needs: deno
