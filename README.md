@@ -1,4 +1,4 @@
-# DMM Bitcoinは保証にいくら必要なのかbot
+# DMM Bitcoinは保証にいくら要るかbot
 2024年5月31日13時26分(JST)ごろ、DMM Bitcoinのウォレットから4502.9BTCの不正流出が確認された[^1]。DMM Bitcoin社は顧客資産の保証をBTCで行うために資金調達している[^2]。  
 当botは現レートで保証されるBTCの価格と、流出当時のレートとの差額を表示する。BTCレートは、CoinGecko Public APIを使用する。
 
