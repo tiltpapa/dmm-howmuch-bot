@@ -1,7 +1,9 @@
 name: Nostr
 on:
-    schedule:
-        - cron: '0 * * * *'
+    push: 
+      branches:
+        - main
+    workflow_dispatch:
 
 jobs:
     deno:
