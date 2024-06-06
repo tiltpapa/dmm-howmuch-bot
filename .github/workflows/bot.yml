@@ -1,0 +1,30 @@
+name: Nostr
+on:
+    schedule:
+        - cron: '0 * * * *'
+
+jobs:
+    deno:
+        runs-on: ubuntu-latest
+        timeout-minutes: 15
+        outputs:
+            bot_content: ${{ steps.run.outputs.content }}
+        steps:
+            - name: Setup repo
+              uses: actions/checkout@v4
+      
+            - name: Setup Deno
+              uses: denoland/setup-deno@v1
+              with:
+                deno-version: v1.x
+            
+            - name: Run Deno
+              id: run
+              run: echo "content=$(deno --quiet task bot)" >> $GITHUB_ENV
+    
+    publish: #試験段階のため投稿はしない
+        needs: deno
+        runs-on: ubuntu-latest
+        steps:
+            - name: Nostr
+              run: echo "${{ needs.deno.outputs.bot_content }}"
