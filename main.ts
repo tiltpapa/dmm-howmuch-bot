@@ -11,13 +11,13 @@ async function getLate(): Promise<number> {
 // Learn more at https://deno.land/manual/examples/module_metadata#concepts
 if (import.meta.main) {
   const currentLate = await getLate();
-  const msgLate = "現在のビットコインレート: " + currentLate.toLocaleString() + "円\r\n" +
+  const msgLate = "現在のビットコインレート: " + currentLate.toLocaleString() + "円\n" +
                   "当時のビットコインレート: " + leak.late.toLocaleString() + "円";
   
   const currentHosyo = currentLate * leak.amount;
   const leakHosyo = leak.late * leak.amount;
-  const msgHosyo = "現在のレートで保証するためには " + currentHosyo.toLocaleString() + "円必要で、\r\n" +
+  const msgHosyo = "現在のレートで保証するためには " + currentHosyo.toLocaleString() + "円必要で、\n" +
                    "流出当時との差額は " + (currentHosyo - leakHosyo).toLocaleString() + "円";
-  const msgAll = msgLate + "\r\n\r\n" + msgHosyo;
+  const msgAll = msgLate + "\n\n" + msgHosyo;
   console.log(msgAll);
 }
