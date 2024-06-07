@@ -1,12 +1,8 @@
-name: Test
+name: Main
 on:
-    push: 
-      branches:
-        - main
-      paths:
-        - '**.ts'
-        - '**.json'
-    workflow_dispatch:
+    schedule:
+      - cron: '0 * * * *'
+#   workflow_dispatch:
 
 jobs:
     deno:
@@ -42,8 +38,7 @@ jobs:
               uses: snow-actions/nostr@v1.7.0
               with:
                 relays: ${{ vars.NOSTR_RELAYS }}
-                private-key: ${{ secrets.NOSTR_PRIVATE_KEY_TEST }}
+                private-key: ${{ secrets.NOSTR_PRIVATE_KEY }}
                 content: |
-                  test action
                   ${{ needs.deno.outputs.bot_content }}
             # run: echo "${{ needs.deno.outputs.bot_content }}"
