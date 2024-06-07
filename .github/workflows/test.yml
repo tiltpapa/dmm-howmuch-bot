@@ -30,9 +30,16 @@ jobs:
                   echo EOS
                 } >> $GITHUB_OUTPUT
     
-    publish: #試験段階のため投稿はしない
+    publish:
         needs: deno
         runs-on: ubuntu-latest
+        timeout-minutes: 5
         steps:
             - name: Nostr
-              run: echo "${{ needs.deno.outputs.bot_content }}"
+              uses: snow-actions/nostr@v1.7.0
+              with:
+                relays: ${{ vars.NOSTR_RELAYS }}
+                private-key: ${{ secrets.NOSTR_PRIVATE_KEY_TEST }}
+                content: |
+                  ${{ needs.deno.outputs.bot_content }}
+            # run: echo "${{ needs.deno.outputs.bot_content }}"
