@@ -3,6 +3,9 @@ on:
     push: 
       branches:
         - main
+      paths:
+        - '**.ts'
+        - '**.json'
     workflow_dispatch:
 
 jobs:
@@ -41,5 +44,6 @@ jobs:
                 relays: ${{ vars.NOSTR_RELAYS }}
                 private-key: ${{ secrets.NOSTR_PRIVATE_KEY_TEST }}
                 content: |
+                  test action
                   ${{ needs.deno.outputs.bot_content }}
             # run: echo "${{ needs.deno.outputs.bot_content }}"
